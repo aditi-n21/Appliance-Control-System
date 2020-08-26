@@ -1,0 +1,243 @@
+
+12c_master.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000146  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         000006cc  00000000  00000000  0000019c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      00000085  00000000  00000000  00000868  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_aranges 00000080  00000000  00000000  000008f0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   0000050b  00000000  00000000  00000970  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000151  00000000  00000000  00000e7b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000389  00000000  00000000  00000fcc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000074  00000000  00000000  00001358  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000012d  00000000  00000000  000013cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000003e  00000000  00000000  000014f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e4       	ldi	r30, 0x46	; 70
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 70 00 	call	0xe0	; 0xe0 <main>
+  8a:	0c 94 a1 00 	jmp	0x142	; 0x142 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <TWI_inti>:
+#define F_CPU 8000000UL
+#include <util/delay.h>
+
+void TWI_inti()
+{
+	TWBR=0x00;  //clear status reg
+  92:	10 b8       	out	0x00, r1	; 0
+	TWBR=0x0c;  //set bit rate
+  94:	8c e0       	ldi	r24, 0x0C	; 12
+  96:	80 b9       	out	0x00, r24	; 0
+	
+}
+  98:	08 95       	ret
+
+0000009a <TWI_start>:
+void TWI_start()
+{
+	TWCR=(1<<TWINT)|(1<<TWEN)|(1<<TWSTA);
+  9a:	84 ea       	ldi	r24, 0xA4	; 164
+  9c:	86 bf       	out	0x36, r24	; 54
+	while((TWCR&(1<<TWINT))==0);
+  9e:	06 b6       	in	r0, 0x36	; 54
+  a0:	07 fe       	sbrs	r0, 7
+  a2:	fd cf       	rjmp	.-6      	; 0x9e <TWI_start+0x4>
+	while((TWSR&(0xf8))!=0x08);
+  a4:	81 b1       	in	r24, 0x01	; 1
+  a6:	88 7f       	andi	r24, 0xF8	; 248
+  a8:	88 30       	cpi	r24, 0x08	; 8
+  aa:	e1 f7       	brne	.-8      	; 0xa4 <TWI_start+0xa>
+}
+  ac:	08 95       	ret
+
+000000ae <TWI_write_addr>:
+void TWI_write_addr(unsigned char addr)
+{
+	TWDR=addr;
+  ae:	83 b9       	out	0x03, r24	; 3
+	TWCR=(1<<TWINT)|(1<<TWEN);
+  b0:	84 e8       	ldi	r24, 0x84	; 132
+  b2:	86 bf       	out	0x36, r24	; 54
+	while((TWCR&(1<<TWINT))==0);
+  b4:	06 b6       	in	r0, 0x36	; 54
+  b6:	07 fe       	sbrs	r0, 7
+  b8:	fd cf       	rjmp	.-6      	; 0xb4 <TWI_write_addr+0x6>
+	while((TWSR&(0xf8))!=0x18);
+  ba:	81 b1       	in	r24, 0x01	; 1
+  bc:	88 7f       	andi	r24, 0xF8	; 248
+  be:	88 31       	cpi	r24, 0x18	; 24
+  c0:	e1 f7       	brne	.-8      	; 0xba <TWI_write_addr+0xc>
+}
+  c2:	08 95       	ret
+
+000000c4 <TWI_write_data>:
+void TWI_write_data(unsigned char data)
+{
+TWDR=data;
+  c4:	83 b9       	out	0x03, r24	; 3
+TWCR=(1<<TWINT)|(1<<TWEN);
+  c6:	84 e8       	ldi	r24, 0x84	; 132
+  c8:	86 bf       	out	0x36, r24	; 54
+while((TWCR&(1<<TWINT))==0);
+  ca:	06 b6       	in	r0, 0x36	; 54
+  cc:	07 fe       	sbrs	r0, 7
+  ce:	fd cf       	rjmp	.-6      	; 0xca <TWI_write_data+0x6>
+while((TWSR&(0xf8))!=0x28);
+  d0:	81 b1       	in	r24, 0x01	; 1
+  d2:	88 7f       	andi	r24, 0xF8	; 248
+  d4:	88 32       	cpi	r24, 0x28	; 40
+  d6:	e1 f7       	brne	.-8      	; 0xd0 <TWI_write_data+0xc>
+	
+}
+  d8:	08 95       	ret
+
+000000da <TWI_stop>:
+void TWI_stop()
+{
+TWCR=(1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
+  da:	84 e9       	ldi	r24, 0x94	; 148
+  dc:	86 bf       	out	0x36, r24	; 54
+}
+  de:	08 95       	ret
+
+000000e0 <main>:
+int main(void)
+{TWI_inti();
+  e0:	0e 94 49 00 	call	0x92	; 0x92 <TWI_inti>
+	
+	while(1)
+    {
+		TWI_start();
+  e4:	0e 94 4d 00 	call	0x9a	; 0x9a <TWI_start>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e8:	8f ef       	ldi	r24, 0xFF	; 255
+  ea:	99 e6       	ldi	r25, 0x69	; 105
+  ec:	a8 e1       	ldi	r26, 0x18	; 24
+  ee:	81 50       	subi	r24, 0x01	; 1
+  f0:	90 40       	sbci	r25, 0x00	; 0
+  f2:	a0 40       	sbci	r26, 0x00	; 0
+  f4:	e1 f7       	brne	.-8      	; 0xee <main+0xe>
+  f6:	00 c0       	rjmp	.+0      	; 0xf8 <main+0x18>
+  f8:	00 00       	nop
+		_delay_ms(1000);
+		TWI_write_addr(0x20);
+  fa:	80 e2       	ldi	r24, 0x20	; 32
+  fc:	0e 94 57 00 	call	0xae	; 0xae <TWI_write_addr>
+ 100:	8f ef       	ldi	r24, 0xFF	; 255
+ 102:	99 e6       	ldi	r25, 0x69	; 105
+ 104:	a8 e1       	ldi	r26, 0x18	; 24
+ 106:	81 50       	subi	r24, 0x01	; 1
+ 108:	90 40       	sbci	r25, 0x00	; 0
+ 10a:	a0 40       	sbci	r26, 0x00	; 0
+ 10c:	e1 f7       	brne	.-8      	; 0x106 <main+0x26>
+ 10e:	00 c0       	rjmp	.+0      	; 0x110 <main+0x30>
+ 110:	00 00       	nop
+		_delay_ms(1000);
+		TWI_write_data('A');
+ 112:	81 e4       	ldi	r24, 0x41	; 65
+ 114:	0e 94 62 00 	call	0xc4	; 0xc4 <TWI_write_data>
+ 118:	8f ef       	ldi	r24, 0xFF	; 255
+ 11a:	99 e6       	ldi	r25, 0x69	; 105
+ 11c:	a8 e1       	ldi	r26, 0x18	; 24
+ 11e:	81 50       	subi	r24, 0x01	; 1
+ 120:	90 40       	sbci	r25, 0x00	; 0
+ 122:	a0 40       	sbci	r26, 0x00	; 0
+ 124:	e1 f7       	brne	.-8      	; 0x11e <main+0x3e>
+ 126:	00 c0       	rjmp	.+0      	; 0x128 <main+0x48>
+ 128:	00 00       	nop
+		_delay_ms(1000);
+		TWI_stop();
+ 12a:	0e 94 6d 00 	call	0xda	; 0xda <TWI_stop>
+ 12e:	8f ef       	ldi	r24, 0xFF	; 255
+ 130:	99 e6       	ldi	r25, 0x69	; 105
+ 132:	a8 e1       	ldi	r26, 0x18	; 24
+ 134:	81 50       	subi	r24, 0x01	; 1
+ 136:	90 40       	sbci	r25, 0x00	; 0
+ 138:	a0 40       	sbci	r26, 0x00	; 0
+ 13a:	e1 f7       	brne	.-8      	; 0x134 <main+0x54>
+ 13c:	00 c0       	rjmp	.+0      	; 0x13e <main+0x5e>
+ 13e:	00 00       	nop
+ 140:	d1 cf       	rjmp	.-94     	; 0xe4 <main+0x4>
+
+00000142 <_exit>:
+ 142:	f8 94       	cli
+
+00000144 <__stop_program>:
+ 144:	ff cf       	rjmp	.-2      	; 0x144 <__stop_program>
